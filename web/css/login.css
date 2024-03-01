@@ -1,0 +1,22 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+.form{
+    width: 500px;
+    height: fit-content;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+    background-color: #ffffff;
+    border-radius: 2%;
+}
+#logo{
+    height: 50%;
+}
+
+form{
+    width: 400px;
+}
