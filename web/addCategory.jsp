@@ -32,7 +32,7 @@
     <form action="addCategory" method="post">
         <div class="container-fluid">
             <div class="row">
-                <div class="form-group mb-3">
+                <div class="form-group mb-3 col-md-10">
                     <input type="text" class="form-control mb-3" name="category" id="category"
                            placeholder="Enter the name of category">
                     <%String result = (String) request.getAttribute("result");%>

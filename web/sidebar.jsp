@@ -23,7 +23,7 @@
         </li>
         <%if(user.getRole() == 1){%>
         <li>
-            <a href="#" class="nav-link link-dark">
+            <a href="addPost" class="nav-link link-dark">
                 <svg class="bi me-2" width="16" height="16">
                     <use xlink:href="#speedometer2"></use>
                 </svg>

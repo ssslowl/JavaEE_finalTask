@@ -66,7 +66,7 @@ public class DbManager {
 
 
 
-    public static int addPost(NewsCategory category) throws SQLException {
+    public static int addCategory(NewsCategory category) throws SQLException {
         Statement statement = connection.createStatement();
 
         String sql = "INSERT INTO news_categories (name) VALUES ('" +
@@ -75,6 +75,27 @@ public class DbManager {
 
         return result;
     }
+
+
+    public static List<NewsCategory> categoryList() throws SQLException {
+        List<NewsCategory> categoryList = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM news_categories");
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                NewsCategory category = new NewsCategory(resultSet.getInt("id"), resultSet.getString("name"));
+                categoryList.add(category);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return categoryList;
+    }
+
+
+
 
 
 

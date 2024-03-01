@@ -10,15 +10,15 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 
-@WebServlet("/addCategory")
-public class AddCategory extends HttpServlet {
+@WebServlet("/addPost")
+public class AddPost extends HttpServlet {
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        req.getRequestDispatcher("addCategory.jsp").forward(req, resp);
+        req.getRequestDispatcher("addPost.jsp").forward(req, resp);
     }
 
 

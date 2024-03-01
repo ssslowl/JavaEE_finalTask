@@ -1,3 +1,7 @@
+<%@ page import="db.DbManager" %>
+<%@ page import="java.util.List" %>
+<%@ page import="models.NewsCategory" %>
+<%@ page import="java.sql.SQLException" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,6 +24,10 @@
             width: 100%;
         }
 
+        .form-group * {
+            margin-bottom: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -29,12 +37,33 @@
 <div class="main">
     <%@include file="header.jsp" %>
 
-    <form action="addCategory" method="post">
+    <form action="addPost" method="post">
         <div class="container-fluid">
             <div class="row">
-                <div class="form-group mb-3">
-                    <input type="text" class="form-control mb-3" name="category" id="category"
-                           placeholder="Enter the name of category">
+                <div class="form-group mb-3 col-md-10">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control mb-3" name="title" id="title"
+                           placeholder="Enter the title of post">
+
+
+                    <label for="category">Category</label>
+                    <select class="form-select" id="category" name="category" aria-label="Default select example">
+                        <option selected>Select category</option>
+                        <%
+                            List<NewsCategory> categories = DbManager.categoryList();
+                            for (NewsCategory i : categories) {%>
+                        <option value="<%=i.getId()%>"><%=i.getName()%>
+                        </option>
+                        <%}%>
+                        %>
+                    </select>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" name="description" id="description" rows="5"></textarea>
+                    </div>
+
+
                     <%String result = (String) request.getAttribute("result");%>
                     <%if (result != null) {%>
                     <div class="alert alert-success"><%=result%>
