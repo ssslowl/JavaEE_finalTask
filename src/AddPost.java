@@ -1,5 +1,6 @@
 import db.DbManager;
 import models.NewsCategory;
+import models.Post;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,18 +25,27 @@ public class AddPost extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("category");
+        String title = req.getParameter("title");
+        String content = req.getParameter("content");
+        Integer category = Integer.valueOf(req.getParameter("category"));
 
+
+        req.setAttribute("resultType", "danger");
         req.setAttribute("result", "fill all the fields");
-        NewsCategory category = new NewsCategory();
-        if (!name.equals("")) {
-            category.setName(name);
+        Post post = new Post();
+        if (!title.equals("") && !content.equals("") && category != 0) {
+
+            post.setTitle(title);
+            post.setContent(content);
+            post.setCategory_id(category);
 
             try {
-                Integer result = DbManager.addCategory(category);
+                Integer result = DbManager.addPost(post);
                 if (result == 0) {
+                    req.setAttribute("resultType", "danger");
                     req.setAttribute("result", "An error has occured");
                 } else {
+                    req.setAttribute("resultType", "success");
                     req.setAttribute("result", "a category has been added succesfuly");
                 }
             } catch (SQLException e) {
@@ -43,6 +53,6 @@ public class AddPost extends HttpServlet {
             }
         }
 
-        req.getRequestDispatcher("addCategory.jsp").forward(req, resp);
+        req.getRequestDispatcher("addPost.jsp").forward(req, resp);
     }
 }

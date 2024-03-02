@@ -1,3 +1,5 @@
+<%@ page import="models.Post" %>
+<%@ page import="java.util.List" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -23,14 +25,19 @@
     </style>
 </head>
 <body>
-<%@include file="sidebar.jsp"%>
+<%@include file="sidebar.jsp" %>
 
 
 <div class="main">
     <%@include file="header.jsp" %>
 
+    <%
+        List<Post> posts = (List<Post>) request.getAttribute("posts");
+    %>
+
 
     <div class="container-fluid">
+        <%for (Post p : posts) {%>
         <div class="row">
             <div class="col-md-10 d-flex justify-content-center right-bck">
                 <div class="registration-right w-100">
@@ -40,37 +47,21 @@
                                                              src="https://via.placeholder.com/150"/>
                             <div class="card-body">
                                 <h4 class="card-title h5 h4-sm"><i class="fas fa-caret-right"
-                                                                   aria-hidden="true"></i><span>AUG 01 2021</span><i
+                                                                   aria-hidden="true"></i><span><%=p.getTitle()%></span><i
                                         class="fas fa-caret-right"
-                                        aria-hidden="true"></i><span>12:00 AM - 11:59 PM</span></h4>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed</p>
+                                        aria-hidden="true"></i><span> <%=p.getPost_date()%></span></h4>
+                                <p class="card-text"><%=p.getContent()%>></p>
                             </div>
                         </div>
-                        <div class="card flex-row mb-3"><img class="card-img-left img-fluid"
-                                                             src="https://via.placeholder.com/150"/>
-                            <div class="card-body">
-                                <h4 class="card-title h5 h4-sm"><i class="fas fa-caret-right"
-                                                                   aria-hidden="true"></i><span>AUG 01 2021</span><i
-                                        class="fas fa-caret-right"
-                                        aria-hidden="true"></i><span>12:00 AM - 11:59 PM</span></h4>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed</p>
-                            </div>
-                        </div>
-                        <div class="card flex-row" mb -3><img class="card-img-left img-fluid"
-                                                              src="https://via.placeholder.com/150"/>
-                            <div class="card-body">
-                                <h4 class="card-title h5 h4-sm"><i class="fas fa-caret-right"
-                                                                   aria-hidden="true"></i><span>AUG 01 2021</span><i
-                                        class="fas fa-caret-right"
-                                        aria-hidden="true"></i><span>12:00 AM - 11:59 PM</span></h4>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed</p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
+
+        <%}%>
     </div>
+</div>
 
 </div>
 

@@ -26,6 +26,7 @@ public class AddCategory extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("category");
 
+        req.setAttribute("resultType", "danger");
         req.setAttribute("result", "fill all the fields");
         NewsCategory category = new NewsCategory();
         if (!name.equals("")) {
@@ -34,8 +35,10 @@ public class AddCategory extends HttpServlet {
             try {
                 Integer result = DbManager.addCategory(category);
                 if (result == 0) {
+                    req.setAttribute("resultType", "danger");
                     req.setAttribute("result", "An error has occured");
                 } else {
+                    req.setAttribute("resultType", "success");
                     req.setAttribute("result", "a category has been added succesfuly");
                 }
             } catch (SQLException e) {

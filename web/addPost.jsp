@@ -48,7 +48,7 @@
 
                     <label for="category">Category</label>
                     <select class="form-select" id="category" name="category" aria-label="Default select example">
-                        <option selected>Select category</option>
+                        <option value = "0" selected>Select category</option>
                         <%
                             List<NewsCategory> categories = DbManager.categoryList();
                             for (NewsCategory i : categories) {%>
@@ -58,15 +58,17 @@
                         %>
                     </select>
 
+
                     <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea class="form-control" name="description" id="description" rows="5"></textarea>
+                        <label for="content">Description</label>
+                        <textarea class="form-control" name="content" id="content" rows="5"></textarea>
                     </div>
 
 
                     <%String result = (String) request.getAttribute("result");%>
+                    <%String resultType = (String) request.getAttribute("resultType");%>
                     <%if (result != null) {%>
-                    <div class="alert alert-success"><%=result%>
+                    <div class="alert alert-<%=resultType%>"><%=result%>
                     </div>
                     <%}%>
                     <input type="submit" value="Add category" class="btn btn-primary" style="width: fit-content">
